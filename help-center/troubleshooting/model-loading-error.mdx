@@ -1,0 +1,29 @@
+---
+title: AI Model Not Loading
+description: Quick fix for Sovadina AI model loading issues.
+---
+
+## Symptoms
+
+- App displays "Model failed to load"
+- No AI results returned
+
+## Causes
+
+- Outdated dependencies
+- Network issues
+
+## Solution
+
+<Steps>
+  <Step title="Restart the Sovadina server">
+    ````bash
+    systemctl restart sovadina
+    ````
+  </Step>
+  <Step title="Update AI dependencies">
+    ````bash
+    pip install --upgrade sovadina-ai
+    ````
+  </Step>
+</Steps>

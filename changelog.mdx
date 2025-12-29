@@ -1,0 +1,119 @@
+---
+title: Changelog
+description: Track the latest updates and improvements to Sovadina. This page lists recent releases with new features, bug fixes, and enhancements for HealthTech development.
+---
+
+## Recent Releases
+
+<Callout kind="info">
+  You receive automatic notifications for new releases via the Sovadina dashboard at `https://dashboard.example.com`. Check the [release notes](https://github.com/sovadina/releases) for migration guides.
+</Callout>
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Enhanced FHIR R4 support: Integrate patient records seamlessly with new endpoints like `/fhir/Patient` and `/fhir/Observation`.
+- Automated medical documentation: AI-powered transcription now handles Czech and English clinical notes with `>95%` accuracy.
+
+## Improvements
+
+- Optimized Python SDK for HealthTech workflows, reducing latency by `30%` during FHIR data syncing.
+- Next.js dashboard updates with real-time AI inference previews.
+
+## Bug Fixes
+
+- Fixed token refresh issues in long-running sessions.
+- Resolved edge cases in FHIR resource validation.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- AI model optimization: Deploy fine-tuned models for medical imaging analysis via `/ai/inference` endpoint.
+- Webhook support for real-time HealthTech event notifications to `https://your-webhook-url.com/webhook`.
+
+## Improvements
+
+- Streamlined authentication flows with OAuth 2.0 for FHIR integrations.
+
+## Bug Fixes
+
+- Corrected Python client errors when handling large datasets (`>50MB`).
+- Patched Next.js hydration mismatches in documentation previews.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## Initial Release
+
+- Core platform launch: Full Stack AI toolkit for HealthTech with Next.js frontend and Python backend.
+- FHIR integration basics: Read/write support for core resources like Patient and Encounter.
+- User authentication and dashboard at `https://dashboard.example.com`.
+
+## Breaking Changes
+
+- Initial API versioning at `/v1/` – update your `baseURL` to `https://api.example.com/v1`.
+
+</Update>
+
+## Upgrading to the Latest Version
+
+Follow these steps to upgrade your Sovadina integration.
+
+<Steps>
+  <Step title="Review Changelog" icon="book-open">
+
+    Scan the release notes above for breaking changes.
+
+  </Step>
+  <Step title="Update SDK" icon="download">
+
+    <CodeGroup tabs="Python,JavaScript">
+    ````python
+    pip install sovadina==1.2.0
+    ````
+
+    ````javascript
+    npm install @sovadina/sdk@1.2.0
+    ````
+    </CodeGroup>
+
+  </Step>
+  <Step title="Test FHIR Integration" icon="shield">
+
+    Verify endpoints with your `YOUR_API_KEY`:
+
+    ```bash
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+         https://api.example.com/v1/fhir/Patient
+    ```
+
+  </Step>
+  <Step title="Deploy Changes" icon="rocket">
+
+    Restart your services and monitor at `https://dashboard.example.com`.
+
+  </Step>
+</Steps>
+
+## Next Steps
+
+<Columns cols={3}>
+  <Card title="Quickstart" icon="zap" href="/quickstart">
+    Get started with Sovadina in minutes.
+  </Card>
+  <Card title="FHIR Integration" icon="database" href="/authentication">
+    Detailed FHIR setup guide.
+  </Card>
+  <Card title="AI Models" icon="brain" href="/introduction">
+    Optimize your HealthTech AI workflows.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  Join the Sovadina community on GitHub for early access to beta features.
+</Callout>

@@ -1,0 +1,24 @@
+---
+title: How do I integrate Sovadina with FHIR?
+description: Steps to connect Sovadina apps to FHIR systems.
+---
+
+## Overview
+
+Sovadina supports direct FHIR integration for medical data.
+
+## Steps
+
+1. Obtain your FHIR server endpoint (e.g., from your EHR system).
+2. In Sovadina AI app, go to Settings → Integrations.
+3. Select "FHIR" and enter endpoint URL and credentials.
+4. Save and test connection.
+
+## Example (Python)
+
+```python
+import requests
+headers = {"Authorization": "Bearer YOUR_TOKEN"}
+res = requests.get("https://your-fhir-server.com/Patient", headers=headers)
+print(res.json())
+```

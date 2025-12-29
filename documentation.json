@@ -1,0 +1,119 @@
+{
+  "name": "sovadina",
+  "initialRoute": "introduction",
+  "colors": {
+    "light": {
+      "brand": "#040404"
+    },
+    "dark": {
+      "brand": "#434343"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "introduction",
+                "icon": "home"
+              },
+              {
+                "title": "Quickstart",
+                "path": "quickstart",
+                "icon": "zap"
+              }
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "icon": "lightbulb",
+            "pages": [
+              {
+                "title": "Core Concepts",
+                "path": "core-concepts",
+                "icon": "file-text"
+              },
+              {
+                "title": "Authentication",
+                "path": "authentication",
+                "icon": "lock"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "openapi": "openapi.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Help Center",
+        "icon": "help-circle",
+        "pages": [
+          {
+            "title": "Help Center",
+            "path": "help-center",
+            "icon": "home"
+          },
+          {
+            "group": "FAQs",
+            "icon": "help-circle",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "How to Integrate FHIR",
+                "path": "help-center/faq/how-to-integrate-fhir"
+              }
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "icon": "alert-triangle",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Model Loading Error",
+                "path": "help-center/troubleshooting/model-loading-error"
+              }
+            ]
+          },
+          {
+            "group": "Guides",
+            "icon": "book-open",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Automate Medical Documents",
+                "path": "help-center/guides/automate-medical-documents"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock",
+        "pages": [
+          {
+            "title": "Release History",
+            "path": "changelog",
+            "icon": "history"
+          }
+        ]
+      }
+    ]
+  }
+}

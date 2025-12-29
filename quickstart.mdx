@@ -1,0 +1,212 @@
+---
+title: Quickstart Guide
+description: Get up and running with Sovadina in minutes by creating your first HealthTech project. This guide covers initial setup and your first AI application deployment.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+
+Before starting, ensure you have:
+
+- Node.js `{version >= 18}` installed
+- Python `{version >= 3.10}` installed
+- Git installed
+- A free Sovadina account (create one at `https://dashboard.example.com/signup`)
+
+</Callout>
+
+## Create Your Sovadina Account and Project
+
+Follow these steps to register and set up your first HealthTech project.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://dashboard.example.com/signup` and create your account using your email. Verify your email address immediately.
+  </Step>
+  <Step title="Create Project" icon="plus">
+    Log in to `https://dashboard.example.com`. Click **New Project**, name it `my-healthtech-app`, and select **AI Healthcare** template.
+  </Step>
+  <Step title="Get API Key" icon="key">
+    Navigate to **API Keys** in your project dashboard. Generate a new key named `quickstart-key` and copy `YOUR_API_KEY`.
+  </Step>
+</Steps>
+
+## Set Up Development Environment
+
+Sovadina uses Next.js for the frontend and Python for AI backend services. Set up both based on your platform.
+
+<Tabs>
+  <Tab title="macOS / Linux" icon="apple">
+
+    **Next.js Frontend:**
+
+````bash
+npm install -g @sovadina/cli
+sovadina init my-healthtech-app
+cd my-healthtech-app/frontend
+npm install
+````
+
+    **Python Backend:**
+
+````bash
+pip install sovadina-fhir-ai
+sovadina init --backend my-healthtech-app
+cd my-healthtech-app/backend
+pip install -r requirements.txt
+````
+
+  </Tab>
+  <Tab title="Windows" icon="monitor">
+
+    **Next.js Frontend:**
+
+````bash
+npm install -g @sovadina/cli
+sovadina init my-healthtech-app
+cd my-healthtech-app/frontend
+npm install
+````
+
+    **Python Backend:**
+
+````bash
+pip install sovadina-fhir-ai
+sovadina init --backend my-healthtech-app
+cd my-healthtech-app/backend
+pip install -r requirements.txt
+````
+
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+
+Set your API key as an environment variable:
+
+```bash
+export SOVADINA_API_KEY="YOUR_API_KEY"
+```
+
+</Callout>
+
+## Run Your First Sample AI Healthcare App
+
+Deploy and run the sample app that generates AI-powered patient summaries.
+
+<Steps>
+  <Step title="Start Frontend" icon="play">
+    In the `frontend` directory, run:
+    
+````bash
+npm run dev
+````
+
+    Open `http://localhost:3000`.
+  </Step>
+  <Step title="Start Backend" icon="server">
+    In the `backend` directory, run:
+    
+````bash
+python app.py
+````
+
+    The backend serves at `http://localhost:8000`.
+  </Step>
+  <Step title="Test AI Endpoint" icon="zap">
+    Visit `http://localhost:3000` and enter sample patient data. The app calls the Sovadina AI API to generate a FHIR-compliant summary.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="Next.js,Python">
+```javascript
+// pages/api/patient.js - Frontend API route
+import { SovadinaAI } from '@sovadina/sdk';
+
+export default async function handler(req, res) {
+  const sovadina = new SovadinaAI({ apiKey: process.env.SOVADINA_API_KEY });
+  const summary = await sovadina.generateSummary({
+    patient: { name: 'John Doe', symptoms: 'fever, cough' }
+  });
+  res.json(summary);
+}
+```
+
+```python
+# backend/app.py - AI Summary Endpoint
+from sovadina import FHIRAI
+from fastapi import FastAPI
+
+app = FastAPI()
+ai = FHIRAI(api_key="YOUR_API_KEY")
+
+@app.post("/summary")
+async def generate_summary(patient_data: dict):
+    return ai.process_patient(patient_data)
+```
+</CodeGroup>
+
+## Test Basic FHIR Integration
+
+Verify FHIR integration with a simple patient query.
+
+<Request tabs="cURL,JavaScript">
+```bash
+curl -X POST https://api.example.com/v1/fhir/patient \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/fhir+json" \
+  -d '{
+    "resourceType": "Patient",
+    "name": [{"text": "John Doe"}],
+    "birthDate": "1980-01-01"
+  }'
+```
+```javascript
+const response = await fetch('https://api.example.com/v1/fhir/patient', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${process.env.SOVADINA_API_KEY}`,
+    'Content-Type': 'application/fhir+json'
+  },
+  body: JSON.stringify({
+    resourceType: 'Patient',
+    name: [{ text: 'John Doe' }],
+    birthDate: '1980-01-01'
+  })
+});
+const patient = await response.json();
+```
+</Request>
+
+<Response tabs="200">
+```json
+{
+  "resourceType": "Patient",
+  "id": "patient-123",
+  "name": [{"text": "John Doe"}],
+  "birthDate": "1980-01-01",
+  "aiSummary": "Healthy adult patient"
+}
+```
+</Response>
+
+## Next Steps
+
+<Columns cols={3}>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Secure your app with API keys and OAuth.
+  </Card>
+  <Card title="FHIR Resources" icon="database" href="/concepts">
+    Dive into full FHIR integration guides.
+  </Card>
+  <Card title="Advanced AI" icon="zap" href="/guides">
+    Build custom HealthTech AI models.
+  </Card>
+</Columns>
+
+<Callout kind="success">
+
+Congratulations! You've deployed your first Sovadina HealthTech app. Explore the dashboard at `https://dashboard.example.com` for analytics.
+
+</Callout>

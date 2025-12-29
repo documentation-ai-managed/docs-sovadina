@@ -1,0 +1,134 @@
+---
+title: Introduction to Sovadina
+description: Discover Sovadina, a full-stack AI developer platform specializing in healthcare and HealthTech innovations. Learn about its key features for building AI applications, FHIR integrations, and medical documentation automation.
+---
+
+## Overview
+
+Sovadina empowers developers to build advanced AI applications for healthcare and HealthTech. You create FHIR integrations, automate medical documentation, and innovate with full-stack solutions using Next.js, Python, and AI technologies. Focus on solving real-world health challenges while Sovadina handles the infrastructure.
+
+<Callout kind="info">
+Sovadina combines domain expertise in healthcare with cutting-edge AI to accelerate your HealthTech projects.
+</Callout>
+
+## Key Features
+
+Sovadina delivers powerful tools tailored for healthcare innovation. Explore these core capabilities:
+
+<Columns cols={3}>
+  <Card title="AI-Powered Apps" icon="zap" href="#ai-apps">
+    Build intelligent applications that analyze patient data and predict outcomes using machine learning models.
+  </Card>
+  <Card title="FHIR Integrations" icon="database" href="#fhir">
+    Seamlessly connect to FHIR servers for standardized healthcare data exchange.
+  </Card>
+  <Card title="Documentation Automation" icon="file-text" href="#automation">
+    Automate clinical notes and reports with AI-driven natural language generation.
+  </Card>
+</Columns>
+
+## Core Technologies
+
+Sovadina leverages industry-leading technologies. You integrate Next.js for dynamic frontends, Python for backend AI logic, and advanced models for healthcare-specific tasks.
+
+<Tabs>
+  <Tab title="Next.js" icon="code">
+    Create responsive dashboards for health data visualization.
+
+````jsx
+// pages/dashboard.js
+import { useState, useEffect } from 'react';
+
+export default function HealthDashboard() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.example.com/health-data')
+      .then(res => res.json())
+      .then(setData);
+  }, []);
+
+  return (
+    <div>
+      {data.map(patient => (
+        <div key={patient.id}>{patient.name}</div>
+      ))}
+    </div>
+  );
+}
+````
+  </Tab>
+  <Tab title="Python" icon="python">
+    Process FHIR resources with AI models.
+
+````python
+# fhir_processor.py
+import fhirclient
+from fhirclient import server
+
+smart = server.FHIRServer('https://api.example.com/fhir')
+patient = smart.request_json('Patient/123')
+
+print(f"Patient: {patient['name'][0]['text']}")
+````
+  </Tab>
+</Tabs>
+
+## Quick Start
+
+Get up and running with Sovadina in minutes. Follow these steps to build your first HealthTech prototype.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Create your account at [https://dashboard.example.com](https://dashboard.example.com/register).
+  </Step>
+  <Step title="Get API Key" icon="key">
+    Generate your key from the dashboard settings.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer `{YOUR_API_KEY}`
+    </ParamField>
+  </Step>
+  <Step title="Make First Request" icon="play">
+    Test the API with a simple health data query.
+
+    <CodeGroup tabs="cURL,Python">
+````bash
+curl -X GET https://api.example.com/health/status \
+  -H "Authorization: Bearer YOUR_API_KEY"
+````
+````python
+import requests
+
+response = requests.get(
+  'https://api.example.com/health/status',
+  headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+print(response.json())
+````
+    </CodeGroup>
+  </Step>
+</Steps>
+
+## Next Steps
+
+Dive deeper into Sovadina's capabilities:
+
+<Columns cols={2}>
+  <Card title="Quickstart Guide" icon="book-open" href="/quickstart">
+    Complete hands-on tutorial for your first AI app.
+  </Card>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Secure your integrations with API keys and OAuth.
+  </Card>
+  <Card title="FHIR Guide" icon="database" href="/fhir">
+    Detailed FHIR integration examples.
+  </Card>
+  <Card title="Changelog" icon="git-branch" href="/changelog">
+    Stay updated with the latest releases.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+Ready to innovate in HealthTech? Start with the [Quickstart Guide](/quickstart) to build your first application today.
+</Callout>
